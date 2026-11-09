@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evaluación de Reganho tras Manga | Dr. Roberto Rumbaut</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Tools for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+   
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#5B93D6',
+                            darkBlue: '#3F78BF',
+                            deepNavy: '#0F2E5A',
+                            bgGray: '#F4F6F9',
+                            cardBg: '#FFFFFF',
+                            textDark: '#222222',
+                            whatsapp: '#25D366',
+                            whatsappHover: '#20ba5a'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #F4F6F9;
+            font-family: 'Inter', sans-serif;
+            color: #222222;
+        }
+        .screen {
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            transform: translateY(8px);
+        }
+        .screen.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .pulse-whatsapp {
+            box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            animation: pulse-green 2s infinite;
+        }
+        @keyframes pulse-green {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.6);
+            }
+            70% {
+                transform: scale(1.02);
+                box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+            }
+        }
+        .option-card {
+            transition: all 0.2s ease;
+        }
+        .option-card:hover {
+            border-color: #5B93D6;
+            background-color: #F0F7FF;
+        }
+        .checkbox-custom:checked + label {
+            border-color: #5B93D6;
+            background-color: #F0F7FF;
+            color: #0F2E5A;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center py-4 px-3 sm:py-8">
+
+
+    <!-- Container Máximo 460px - Centrado Perfecto tipo Tarjeta / Celular -->
+    <main class="w-full max-w-[460px] bg-white rounded-3xl shadow-xl border border-gray-100 overflow-hidden my-auto flex flex-col relative">
+       
+        <!-- Header Fijo con Progreso -->
+        <header class="bg-brand-deepNavy px-6 pt-5 pb-4 text-white text-center relative border-b border-blue-900">
+            <div class="flex items-center justify-between mb-2">
+                <button id="backBtn" onclick="goBack()" class="text-blue-200 hover:text-white transition opacity-0 pointer-events-none text-sm flex items-center font-medium">
+                    <i class="fa-solid fa-chevron-left mr-1"></i> Atrás
+                </button>
+<div class="mx-auto">
+                    <img src="logo.jpg" alt="Logo Especialidades Bariátricas" class="h-8 object-contain">
+                </div>
+
+                <div class="w-10"></div> <!-- Balanceador visual -->
+            </div>
+                <span class="text-xs font-semibold tracking-wider uppercase text-blue-200 bg-blue-950/60 px-3 py-1 rounded-full border border-blue-700/50">
+                    Especialidades Bariátricas
+                </span>
+                <div class="w-10"></div> <!-- Balanceador visual -->
+            </div>
+           
+            <h1 class="text-xs text-blue-100 font-normal tracking-wide">Dr. Roberto Rumbaut · Cirugía de Revisión</h1>
+
+
+            <!-- Barra de Progreso (Oculta en Pantalla 1) -->
+            <div id="progressContainer" class="w-full bg-blue-950 rounded-full h-2 mt-3 overflow-hidden hidden border border-blue-800">
+                <div id="progressBar" class="bg-brand-blue h-full transition-all duration-500 ease-out" style="width: 0%"></div>
+            </div>
+        </header>
+
+
+        <!-- Cuerpo de Pantallas (1 a 8) -->
+        <div class="p-5 sm:p-6 flex-grow flex flex-col justify-center">
+
+
+            <!-- PANTALLA 1: Entrada -->
+            <section id="screen1" class="screen active">
+                <div class="text-center">
+                    <span class="inline-block bg-blue-50 text-brand-darkBlue font-semibold text-xs px-3 py-1 rounded-full mb-3 border border-blue-100">
+                        Evaluación para Cirugía de Revisión
+                    </span>
+                    <h2 class="text-xl sm:text-2xl font-bold text-brand-deepNavy leading-tight mb-3">
+                        ¿Te operaron de manga gástrica y volviste a subir de peso?
+                    </h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-5">
+                        No es tu culpa y puede haber una solución. Conoce si eres candidato a una cirugía de revisión con el Dr. Rumbaut.
+                    </p>
+
+
+                    <!-- Foto Avatar del Doctor -->
+                    <div class="my-4 flex justify-center">
+                        <div class="relative w-28 h-28 rounded-full border-4 border-brand-blue p-1 bg-white shadow-md">
+                            <img src="dr-rumbaut.jpg"
+                                 alt="Dr. Roberto Rumbaut"
+                                 class="w-full h-full object-cover rounded-full"
+                                 onerror="this.src='https://ui-avatars.com/api/?name=Roberto+Rumbaut&background=0F2E5A&color=fff&size=200'">
+                            <span class="absolute bottom-0 right-0 bg-brand-darkBlue text-white text-[10px] p-1.5 rounded-full border-2 border-white shadow">
+                                <i class="fa-solid fa-user-md"></i>
+                            </span>
+                        </div>
+                    </div>
+
+
+                    <!-- Franja de Confianza / Credenciales -->
+                    <div class="grid grid-cols-3 gap-2 bg-slate-50 p-3 rounded-2xl border border-gray-100 my-5 text-center">
+                        <div>
+                            <p class="font-bold text-brand-deepNavy text-sm sm:text-base">+25 años</p>
+                            <p class="text-[10px] text-gray-500 leading-tight">Experiencia</p>
+                        </div>
+                        <div class="border-x border-gray-200">
+                            <p class="font-bold text-brand-deepNavy text-sm sm:text-base">+11,000</p>
+                            <p class="text-[10px] text-gray-500 leading-tight">Pacientes</p>
+                        </div>
+                        <div>
+                            <p class="font-bold text-brand-deepNavy text-sm sm:text-base">Profesor</p>
+                            <p class="text-[10px] text-gray-500 leading-tight">TecSalud</p>
+                        </div>
+                    </div>
+
+
+                    <button onclick="nextScreen(2)" class="w-full bg-brand-blue hover:bg-brand-darkBlue text-white font-bold py-3.5 px-6 rounded-2xl shadow-lg transition duration-200 flex items-center justify-center gap-2 text-base">
+                        Descubrir mis opciones <span class="text-xs font-normal opacity-90">(2 minutos)</span>
+                        <i class="fa-solid fa-arrow-right text-sm"></i>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- PANTALLA 2: Pregunta 1 -->
+            <section id="screen2" class="screen">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Paso 1 de 4</span>
+                <h2 class="text-lg font-bold text-brand-deepNavy mt-1 mb-5">¿Hace cuánto te operaron de la manga gástrica?</h2>
+               
+                <div class="space-y-3">
+                    <button onclick="selectSingle('p1', 'Menos de 2 años', 3)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Menos de 2 años</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p1', '2 a 5 años', 3)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>2 a 5 años</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p1', '5 a 10 años', 3)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>5 a 10 años</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p1', 'Más de 10 años', 3)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Más de 10 años</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- PANTALLA 3: Pregunta 2 -->
+            <section id="screen3" class="screen">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Paso 2 de 4</span>
+                <h2 class="text-lg font-bold text-brand-deepNavy mt-1 mb-5">¿Qué te ha pasado con tu peso?</h2>
+               
+                <div class="space-y-3">
+                    <button onclick="selectSingle('p2', 'Recuperé una parte del peso que bajé', 4)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Recuperé una parte del peso que bajé</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p2', 'Recuperé casi todo el peso', 4)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Recuperé casi todo</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p2', 'Nunca bajé lo esperado', 4)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Nunca bajé lo esperado</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p2', 'Estoy estancado(a)', 4)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Estoy estancado(a)</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- PANTALLA 4: Pregunta 3 -->
+            <section id="screen4" class="screen">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Paso 3 de 4</span>
+                <h2 class="text-lg font-bold text-brand-deepNavy mt-1 mb-5">¿Has usado medicamentos como Ozempic, Mounjaro o Wegovy?</h2>
+               
+                <div class="space-y-3">
+                    <button onclick="selectSingle('p3', 'Sí, y no funcionaron', 5)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Sí, y no funcionaron</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p3', 'Sí, pero no los toleré', 5)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Sí, pero no los toleré</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p3', 'Sí, y los dejé', 5)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>Sí, y los dejé</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                    <button onclick="selectSingle('p3', 'No los he utilizado', 5)" class="option-card w-full text-left p-4 rounded-xl border border-gray-200 font-medium text-gray-800 flex justify-between items-center shadow-sm">
+                        <span>No</span>
+                        <i class="fa-solid fa-chevron-right text-gray-300 text-xs"></i>
+                    </button>
+                </div>
+            </section>
+
+
+            <!-- PANTALLA 5: Pregunta 4 (Multiselección) -->
+            <section id="screen5" class="screen">
+                <span class="text-xs font-bold text-brand-blue uppercase tracking-wider">Paso 4 de 4</span>
+                <h2 class="text-lg font-bold text-brand-deepNavy mt-1 mb-2">¿Tienes alguna de estas condiciones?</h2>
+                <p class="text-xs text-gray-500 mb-4">Puedes seleccionar varias opciones.</p>
+               
+                <div class="space-y-2.5 mb-6">
+                    <div>
+                        <input type="checkbox" id="cond1" value="Diabetes o Resistencia a Insulina" class="hidden checkbox-custom" onchange="toggleCondition(this)">
+                        <label for="cond1" class="flex items-center p-3.5 rounded-xl border border-gray-200 cursor-pointer text-sm font-medium text-gray-700 transition">
+                            <i class="fa-regular fa-square mr-3 text-gray-400 check-icon"></i>
+                            Diabetes o resistencia a la insulina
+                        </label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cond2" value="Reflujo" class="hidden checkbox-custom" onchange="toggleCondition(this)">
+                        <label for="cond2" class="flex items-center p-3.5 rounded-xl border border-gray-200 cursor-pointer text-sm font-medium text-gray-700 transition">
+                            <i class="fa-regular fa-square mr-3 text-gray-400 check-icon"></i>
+                            Reflujo
+                        </label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cond3" value="Hipertensión" class="hidden checkbox-custom" onchange="toggleCondition(this)">
+                        <label for="cond3" class="flex items-center p-3.5 rounded-xl border border-gray-200 cursor-pointer text-sm font-medium text-gray-700 transition">
+                            <i class="fa-regular fa-square mr-3 text-gray-400 check-icon"></i>
+                            Hipertensión
+                        </label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cond4" value="Ninguna" class="hidden checkbox-custom" onchange="toggleNoneCondition(this)">
+                        <label for="cond4" class="flex items-center p-3.5 rounded-xl border border-gray-200 cursor-pointer text-sm font-medium text-gray-700 transition">
+                            <i class="fa-regular fa-square mr-3 text-gray-400 check-icon"></i>
+                            Ninguna de las anteriores
+                        </label>
+                    </div>
+                </div>
+
+
+                <button onclick="submitMultiAndNext(6)" class="w-full bg-brand-blue hover:bg-brand-darkBlue text-white font-bold py-3.5 px-6 rounded-2xl shadow-md transition duration-200 flex items-center justify-center gap-2">
+                    Continuar a mi resultado <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </section>
+
+
+            <!-- PANTALLA 6: Resultado -->
+            <section id="screen6" class="screen">
+                <div class="text-center mb-4">
+                    <span class="bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full border border-green-200">
+                        <i class="fa-solid fa-circle-check text-green-600 mr-1"></i> Análisis Completado
+                    </span>
+                    <h2 class="text-xl font-bold text-brand-deepNavy mt-3 mb-2 leading-tight">
+                        Gracias por tus respuestas. Tu caso merece una valoración especializada.
+                    </h2>
+                </div>
+
+
+                <div class="bg-blue-50/60 p-4 rounded-2xl border border-blue-100 text-xs leading-relaxed text-gray-700 space-y-2 mb-4">
+                    <p>
+                        Recuperar peso después de una manga es más común de lo que se cree, y existen opciones para revisar tu caso. Una de ellas es el <strong>SASI</strong>, una cirugía de revisión que combina los beneficios de la manga gástrica con una modificación del tránsito intestinal.
+                    </p>
+                    <ul class="space-y-1.5 pt-1 text-gray-800 font-medium">
+                        <li class="flex items-start gap-1.5">
+                            <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
+                            <span>Puede favorecer mayor saciedad y menor apetito.</span>
+                        </li>
+                        <li class="flex items-start gap-1.5">
+                            <i class="fa-solid fa-check text-brand-blue mt-0.5"></i>
+                            <span>En pacientes con resistencia a la insulina o diabetes tipo 2, puede aportar beneficios metabólicos.</span>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <div class="bg-amber-50 p-3 rounded-xl border border-amber-200 text-[11px] text-amber-900 leading-snug mb-5">
+                    <p><strong>Nota importante:</strong> No todas las personas necesitan reoperarse. El Dr. Rumbaut evalúa primero la causa y te explica todas tus opciones.</p>
+                </div>
+
+
+                <button onclick="nextScreen(7)" class="w-full bg-brand-blue hover:bg-brand-darkBlue text-white font-bold py-3.5 px-6 rounded-2xl shadow-md transition duration-200 flex items-center justify-center gap-2">
+                    Ver detalles y agendar <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </section>
+
+
+            <!-- PANTALLA 7: Por qué con el Dr. Rumbaut -->
+            <section id="screen7" class="screen">
+                <h2 class="text-lg font-bold text-brand-deepNavy mb-4 text-center">Por qué evaluar tu caso con el Dr. Roberto Rumbaut</h2>
+
+
+                <ul class="space-y-2.5 text-xs text-gray-700 mb-5">
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-brand-blue text-sm mt-0.5"></i>
+                        <span><strong>Más de 25 años de experiencia</strong> y más de 11,000 pacientes atendidos.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-brand-blue text-sm mt-0.5"></i>
+                        <span><strong>Técnica de vanguardia:</strong> Ya ha operado exitosamente pacientes con técnica SASI.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-brand-blue text-sm mt-0.5"></i>
+                        <span><strong>Respaldado por certificaciones internacionales.</strong></span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-brand-blue text-sm mt-0.5"></i>
+                        <span><strong>Valoración informativa y transparente</strong> sin compromiso.</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-check text-brand-blue text-sm mt-0.5"></i>
+                        <span>¿Vives fuera de Monterrey? Contamos con <strong>Plan Todo Incluido</strong>.</span>
+                    </li>
+                </ul>
+
+
+                <!-- Sellos de Certificaciones Simulados -->
+                <div class="border-t border-b border-gray-100 py-3 my-4">
+                    <p class="text-[10px] text-gray-400 text-center uppercase tracking-wider mb-2 font-semibold">Certificaciones y Miembro de</p>
+                    <div class="flex flex-wrap justify-center gap-1.5 text-[10px] font-bold text-slate-600">
+                        <span class="bg-gray-100 px-2 py-1 rounded border border-gray-200">CMCOEM</span>
+                        <span class="bg-gray-100 px-2 py-1 rounded border border-gray-200">ACS</span>
+                        <span class="bg-gray-100 px-2 py-1 rounded border border-gray-200">ASMBS</span>
+                        <span class="bg-gray-100 px-2 py-1 rounded border border-gray-200">IFSO</span>
+                        <span class="bg-gray-100 px-2 py-1 rounded border border-gray-200">CMCG</span>
+                    </div>
+                </div>
+
+
+                <!-- Testimonio breve -->
+                <div class="bg-gray-50 p-3 rounded-xl border border-gray-100 mb-5 text-[11px] text-gray-600 italic relative">
+                    <div class="text-amber-400 text-xs mb-1">★★★★★</div>
+                    "Había recuperado 18 kilos de mi manga. La orientación del Dr. Rumbaut fue impecable y recuperé mi salud de forma segura."
+                    <span class="block text-right font-semibold text-gray-800 not-italic text-[10px] mt-1">— Maria G. (Paciente de Revisión)</span>
+                </div>
+
+
+                <button onclick="nextScreen(8)" class="w-full bg-brand-blue hover:bg-brand-darkBlue text-white font-bold py-3.5 px-6 rounded-2xl shadow-md transition duration-200 flex items-center justify-center gap-2">
+                    Continuar a mi valoración <i class="fa-solid fa-arrow-right text-xs"></i>
+                </button>
+            </section>
+
+
+            <!-- PANTALLA 8: Captura de Datos y WhatsApp -->
+            <section id="screen8" class="screen">
+                <div class="text-center mb-4">
+                    <span class="bg-blue-50 text-brand-darkBlue text-xs font-bold px-3 py-1 rounded-full border border-blue-100">Último Paso</span>
+                    <h2 class="text-xl font-bold text-brand-deepNavy mt-2">Recibe tu valoración personalizada</h2>
+                    <p class="text-xs text-gray-500 mt-1">Ingresa tus datos para enviarte la información completa por WhatsApp.</p>
+                </div>
+
+
+                <form id="leadForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                    <div>
+                        <label for="userName" class="block text-xs font-semibold text-gray-700 mb-1">Nombre completo *</label>
+                        <input type="text" id="userName" required placeholder="Ej. Maria Rodríguez" class="w-full px-4 py-3 text-sm rounded-xl border border-gray-300 focus:outline-none focus:border-brand-blue transition">
+                    </div>
+
+
+                    <div>
+                        <label for="userPhone" class="block text-xs font-semibold text-gray-700 mb-1">WhatsApp / Teléfono *</label>
+                        <input type="tel" id="userPhone" required placeholder="Ej. 81 1234 5678" class="w-full px-4 py-3 text-sm rounded-xl border border-gray-300 focus:outline-none focus:border-brand-blue transition">
+                    </div>
+
+
+                    <button type="submit" class="w-full bg-brand-whatsapp hover:bg-brand-whatsappHover text-white font-bold py-4 px-6 rounded-2xl shadow-lg transition duration-200 flex items-center justify-center gap-3 text-base pulse-whatsapp mt-2">
+                        <i class="fa-brands fa-whatsapp text-2xl"></i>
+                        <span>Agendar mi valoración por WhatsApp</span>
+                    </button>
+                </form>
+
+
+                <p class="text-[10px] text-gray-400 text-center mt-4">
+                    <i class="fa-solid fa-lock mr-1"></i> Tus datos son 100% confidenciales y protegidos.
+                </p>
+            </section>
+
+
+        </div>
+
+
+        <!-- Footer / Copy Fijo -->
+        <footer class="bg-gray-50 border-t border-gray-100 p-3 text-center text-[11px] text-gray-400">
+            Especialidades Bariátricas · Dr. Roberto Rumbaut
+        </footer>
+    </main>
+
+
+    <!-- Lógica en JavaScript -->
+    <script>
+        // Estado del Funnel / Respuestas
+        const formData = {
+            p1: '', // Tiempo operado
+            p2: '', // Situación de peso
+            p3: '', // Medicamentos GLP-1
+            p4: [], // Condiciones médicas
+            name: '',
+            phone: ''
+        };
+
+
+        let currentScreen = 1;
+        const totalSteps = 8;
+
+
+        // Navegación entre Pantallas
+        function showScreen(screenNum) {
+            // Manejar Visibilidad
+            document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+            const targetScreen = document.getElementById(`screen${screenNum}`);
+            if (targetScreen) {
+                targetScreen.classList.add('active');
+            }
+
+
+            currentScreen = screenNum;
+
+
+            // Actualizar Barra de Progreso
+            const progressContainer = document.getElementById('progressContainer');
+            const progressBar = document.getElementById('progressBar');
+            const backBtn = document.getElementById('backBtn');
+
+
+            if (screenNum > 1) {
+                progressContainer.classList.remove('hidden');
+                // Progreso relativo entre preguntas/pasos
+                let percentage = 0;
+                if (screenNum >= 2 && screenNum <= 5) {
+                    percentage = ((screenNum - 1) / 4) * 60; // 0 a 60% en preguntas
+                } else if (screenNum === 6) {
+                    percentage = 80;
+                } else if (screenNum >= 7) {
+                    percentage = 100;
+                }
+                progressBar.style.width = `${percentage}%`;
+
+
+                // Botón Atrás
+                backBtn.classList.remove('opacity-0', 'pointer-events-none');
+            } else {
+                progressContainer.classList.add('hidden');
+                backBtn.classList.add('opacity-0', 'pointer-events-none');
+            }
+
+
+            // Scroll arriba dentro del contenedor
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+
+        function nextScreen(target) {
+            showScreen(target);
+        }
+
+
+        function goBack() {
+            if (currentScreen > 1) {
+                showScreen(currentScreen - 1);
+            }
+        }
+
+
+        // Selección Única (Pantallas 2, 3, 4)
+        function selectSingle(key, val, next) {
+            formData[key] = val;
+            nextScreen(next);
+        }
+
+
+        // Selección Múltiple (Pantalla 5)
+        function toggleCondition(checkbox) {
+            const noneCheck = document.getElementById('cond4');
+            if (checkbox.checked && noneCheck.checked) {
+                noneCheck.checked = false;
+                updateIcon(noneCheck);
+            }
+            updateIcon(checkbox);
+        }
+
+
+        function toggleNoneCondition(noneCheck) {
+            if (noneCheck.checked) {
+                // Desmarcar las demás
+                ['cond1', 'cond2', 'cond3'].forEach(id => {
+                    const el = document.getElementById(id);
+                    el.checked = false;
+                    updateIcon(el);
+                });
+            }
+            updateIcon(noneCheck);
+        }
+
+
+        function updateIcon(checkbox) {
+            const label = checkbox.nextElementSibling;
+            const icon = label.querySelector('.check-icon');
+            if (checkbox.checked) {
+                icon.className = 'fa-solid fa-square-check mr-3 text-brand-blue check-icon';
+            } else {
+                icon.className = 'fa-regular fa-square mr-3 text-gray-400 check-icon';
+            }
+        }
+
+
+        function submitMultiAndNext(next) {
+            const selected = [];
+            ['cond1', 'cond2', 'cond3', 'cond4'].forEach(id => {
+                const el = document.getElementById(id);
+                if (el && el.checked) {
+                    selected.push(el.value);
+                }
+            });
+
+
+            formData.p4 = selected.length > 0 ? selected : ['Ninguna'];
+            nextScreen(next);
+        }
+
+
+        // Envío final del Formulario y Redirección a WhatsApp
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+
+            formData.name = document.getElementById('userName').value.trim();
+            formData.phone = document.getElementById('userPhone').value.trim();
+
+
+            // Formatear texto para WhatsApp
+            const p1Text = formData.p1 || 'No especificado';
+            const p2Text = formData.p2 || 'No especificado';
+            const p3Text = formData.p3 || 'No especificado';
+            const p4Text = formData.p4.length > 0 ? formData.p4.join(', ') : 'Ninguna';
+
+
+            const message = `Hola Dr. Rumbaut, completé el test de evaluación en la página web.
+
+
+*Mis Respuestas:*
+- Tiempo operado de manga: ${p1Text}
+- Situación de peso: ${p2Text}
+- Medicamentos GLP-1: ${p3Text}
+- Condiciones: ${p4Text}
+
+
+*Mis Datos:*
+- Nombre: ${formData.name}
+- Teléfono: ${formData.phone}
+
+
+Me gustaría agendar mi valoración especializada sobre la cirugía de revisión SASI.`;
+
+
+            // Número genérico o de la clínica (aquí sin número asignado para abrir el chat directo de selección o wa.me)
+            const encodedMsg = encodeURIComponent(message);
+            const whatsappUrl = `https://wa.me/?text=${encodedMsg}`;
+
+
+            // Abrir WhatsApp en nueva pestaña/ventana
+            window.open(whatsappUrl, '_blank');
+        }
+    </script>
+</body>
+</html>
+
